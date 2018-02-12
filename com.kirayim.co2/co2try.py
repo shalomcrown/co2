@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jan 27 21:12:44 2018
@@ -46,5 +47,8 @@ for year in range(1969, 2018):
     print(year, yearData['cx'].min(), yearData['cx'].max(), yearData['cx'].mean())
     ax.plot(yearData['Date'].apply(lambda p: p.dayofyear), yearData['cx'])
 
+ax.set_xlabel("Day of year")
+ax.set_ylabel("CO2 ppm")
+ax.set_title("Seasonal Daily CO2 ppm At La Jolla for 1969 to 2018")
 
 plt.show()
