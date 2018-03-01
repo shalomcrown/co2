@@ -21,7 +21,8 @@ scrippsData = [
     ['South pole' , 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_spo.csv', '"'],
     ['Mauna Loa',  'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_mlo.csv', '"'],
     ['Point barrow AL', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_ptb.csv', '"'],
-    ['Christmas Island', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_chr.csv', '"']
+    ['Christmas Island', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_chr.csv', '"'],
+    ['Baring head NZ', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_nzd.csv', '"']
 ]
 
 
@@ -55,19 +56,34 @@ fig, ax = plt.subplots()
 for name,url,commentChar in scrippsData:
     df = downloadFileIfNecessary(url, commentChar)
     print(name, df['cx'].min(), df.ix[df['cx'].argmax()])
-    df.plot(x='Date_Time', y='cx', label=name) # Before any filtering
-    df = df[df['cx'] < 420]    
+    df.plot(x='Date_Time', y='cx', title=name + " unfiltered CO2 readings") # Before any filtering
+    df = df[df['cx'] < 420]
     ax.plot(df['Date_Time'], df['cx'], label=name)
-#
-#    for year in range(1969, 2018):
-#        yearData = df[(df['Date_Time'] >= pd.Timestamp(datetime.datetime(year, 1, 1))) 
-#                    & (df['Date_Time'] < pd.Timestamp(datetime.datetime(year + 1, 1, 1)))]
-#        yearData.
+    df['day'] = df['Date_Time'].apply(lambda p: p.dayofyear)
+    fig2, bx = plt.subplots()    
+    
+    for year in range(1969, 2018):
+        yearData = df[(df['Date_Time'] >= pd.Timestamp(datetime.datetime(year, 1, 1))) 
+                    & (df['Date_Time'] < pd.Timestamp(datetime.datetime(year + 1, 1, 1)))]
+                    
+        yearData = yearData.copy()
+        yearData = yearData.dropna(axis=1)
+        mean = yearData['cx'].mean()
+        yearData['cx'] = yearData['cx'] - mean
+        std = yearData['cx'].std(skipna=True)
+        if std:
+            yearData = yearData[(yearData['cx'] < (2 * std)) & (yearData['cx'] > (-2 * std))]
+        bx.plot(yearData['day'], yearData['cx'])
+        bx.set_title(name + " Seasonal C02 readings")
+        bx.set_ylabel("CO2 relative ppm")
+        bx.set_xlabel("Day of year")
+    
 
 
 ax.set_ylabel("CO2 ppm")
 ax.set_xlabel('Date')
 ax.legend(loc='best')
+ax.set_title("CO2 trends, combined graphs")
 
 
 
