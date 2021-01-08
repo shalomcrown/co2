@@ -13,7 +13,7 @@ import scipy.fftpack
 import datetime
 import requests
 import os
-import urlparse
+import urllib.parse
 
 
 scrippsData = [
@@ -34,13 +34,13 @@ def downloadFileIfNecessary(url, commentChar):
     if not os.path.exists(downloadDir):
         os.makedirs(downloadDir)
 
-    uu = urlparse.urlparse(url)
+    uu = urllib.parse.urlparse(url)
     downloadFile = os.path.join(downloadDir, os.path.basename(uu.path))
 
     if not os.path.exists(downloadFile):
         print('Downloading file - please wait')
         r = requests.get(url, stream=True)
-        with open(downloadFile, 'w') as fl:
+        with open(downloadFile, 'wb') as fl:
             for chunk in r.iter_content(chunk_size=4096):
                 if chunk: fl.write(chunk)
 
@@ -55,7 +55,7 @@ fig, ax = plt.subplots()
 
 for name,url,commentChar in scrippsData:
     df = downloadFileIfNecessary(url, commentChar)
-    print(name, df['cx'].min(), df.ix[df['cx'].argmax()])
+    print((name, df['cx'].min(), df.loc[df['cx'].idxmax()]))
     df.plot(x='Date_Time', y='cx', title=name + " unfiltered CO2 readings") # Before any filtering
     df = df[df['cx'] < 420]
     ax.plot(df['Date_Time'], df['cx'], label=name)
