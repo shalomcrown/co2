@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from bokeh.plotting import figure, output_file, curdoc, show
 from bokeh.tile_providers import CARTODBPOSITRON, get_provider
 from bokeh.server.server import Server
-from bokeh.layouts import column
+from bokeh.layouts import column, row
 from bokeh.models import HoverTool, TapTool, CustomJS, Div
 from bokeh.events import DoubleTap
 import numpy as np
@@ -16,6 +16,8 @@ import os
 import os.path
 import tarfile
 import logging
+import datetime
+from bokeh.util.sampledata import DataFrame
 
 logger = None
 
@@ -23,7 +25,7 @@ logger = None
 
 class TempDaily:
     def readStations(self):
-        colspecs = [(0, 10), (12, 19), (21, 29), (31, 36), (38, 39), (41, 70), (72, 74), (76, 78), (80, 84)]
+        colspecs = [(0, 11), (12, 19), (21, 29), (31, 36), (38, 39), (41, 70), (72, 74), (76, 78), (80, 84)]
         columnNames =  ["ID", "LATITUDE", "LONGITUDE", "ELEVATION", "STATE", "NAME", "GSN FLAG", "HCN/CRN FLAG", "WMO ID",]
 
         stationsPath = os.path.expanduser("~/Downloads/Weather/ghcnd-stations.txt")
@@ -59,19 +61,80 @@ class TempDaily:
         logger.debug(f"Station clicked {doubleTap.x},{doubleTap.y}")
         pythagoras = (self.stations["x"] - doubleTap.x) ** 2 + (self.stations["y"] - doubleTap.y) ** 2
         station = self.stations.iloc[pythagoras.idxmin()]
-        logger.debug(station) 
+        logger.debug(station)
+        self.readData(station)
 
     def periodic(self):
         logger.debug("Periodic callback")
     #---------------------------------------------------------------------
 
     def readData(self, station):
-        dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
-        with tarfile.open(dataPath) as alltar:
-            if station:
-                stationFile = tarfile.getmember(station + ".dly")
-                tarfile.extract(station, "/tmp")
-                #TODO: read data..
+        stationOutputFile = os.path.expanduser(f'~/Downloads/Weather/{station.ID}.csv')
+        if os.path.exists(stationOutputFile):
+            stationDF = pd.read_csv(stationOutputFile, index_col=0, parse_dates=True)
+        else:
+            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
+            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
+            dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
+            with tarfile.open(dataPath) as alltar:
+                stationFileTarInfo = alltar.getmember(f'ghcnd_all/{station.ID}.dly')
+                with alltar.extractfile(stationFileTarInfo) as stationFile:
+                    for line in stationFile:
+                        line = line if isinstance(line, str) else line.decode('utf-8')
+                        element = line[17:21]
+                        if element not in interesingElements:
+                            continue
+                        
+                        stationId = line[0:11]
+                        startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
+    
+                        for day in range(1,32):
+                            startField = 21 + (day - 1) * 8
+                            value = float(line[startField:startField + 5].strip())
+                            if value == -9999:
+                                continue
+                            fieldDate = startDate.replace(day=day)
+                            stationDF.at[fieldDate, element] = value
+            stationDF.to_csv(stationOutputFile)
+            
+        yearlyPrecip = stationDF.groupby(lambda p: p.year)['PRCP'].sum()
+        print(yearlyPrecip)        
+        yearlyPlot = figure(title=f"Precipitation by calendar year: {station.NAME}", x_axis_label='Year', y_axis_label='mm * 100')
+        yearlyPlot.line(yearlyPrecip.index, yearlyPrecip)
+        
+        monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+        monthlyPlot = figure(title=f"Precipitation by month: {station.NAME}", x_axis_type="datetime", x_axis_label='Month', y_axis_label='mm * 100')
+        monthlyPlot.line(monthlyPrecip.index, monthlyPrecip)
+        
+        monthlyComparisonPlot = figure(title=f"Precipitation by month comparison: {station.NAME}", x_axis_label='Month', y_axis_label='mm * 100')
+        
+        for year in range(stationDF.index.min().year, stationDF.index.max().year + 1):
+            yearData = stationDF[stationDF.index.year == year].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+            monthlyComparisonPlot.line(yearData.index.month, yearData)
+        
+        stationRow = row(yearlyPlot, monthlyPlot, monthlyComparisonPlot)
+        curdoc().add_root(stationRow)
+
+                
+# ID            1-11   Character
+# YEAR         12-15   Integer
+# MONTH        16-17   Integer
+# ELEMENT      18-21   Character
+# VALUE1       22-26   Integer
+# MFLAG1       27-27   Character
+# QFLAG1       28-28   Character
+# SFLAG1       29-29   Character
+# VALUE2       30-34   Integer
+# MFLAG2       35-35   Character
+# QFLAG2       36-36   Character
+# SFLAG2       37-37   Character
+#   .           .          .
+#   .           .          .
+#   .           .          .
+# VALUE31    262-266   Integer
+# MFLAG31    267-267   Character
+# QFLAG31    268-268   Character
+# SFLAG31    269-269   Character
 
     # ---------------------------------------------------------------------
 
@@ -79,7 +142,8 @@ class TempDaily:
         self.readStations()
         plot = self.plotStations()
         plot.on_event(DoubleTap, self.stationClicked)
-        doc.add_root(column(plot))
+        self.column = column(plot)
+        doc.add_root(self.column)
         # , Div("<h1>Double click a station to get data</h1>")
 
 # ---------------------------------------------------------------------
