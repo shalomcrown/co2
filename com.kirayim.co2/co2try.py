@@ -8,24 +8,40 @@ Created on Sat Jan 27 21:12:44 2018
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import scipy.fftpack
 import datetime
 import requests
 import os
 import urllib.parse
+import matplotlib.pyplot as plt
+from bokeh.plotting import figure, output_file, curdoc, show
+from bokeh.tile_providers import CARTODBPOSITRON, get_provider
+from bokeh.server.server import Server
+from bokeh.layouts import column, row
+from bokeh.models import HoverTool, TapTool, CustomJS, Div
+from bokeh.events import DoubleTap
+from bokeh.io import output_file, show
+from bokeh.plotting import figure
+from bokeh.layouts import column, row
+from bokeh.embed import file_html
+from bokeh.palettes import Category20_20
 
 
 scrippsData = [
-    ['la Jolla' , 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_ljo.csv', '"'],
-    ['South pole' , 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_spo.csv', '"'],
-    ['Mauna Loa',  'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_mlo.csv', '"'],
+    ['Alert, NWT, Canada', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_alt.csv', '"'],
     ['Point barrow AL', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_ptb.csv', '"'],
+    ['Station P', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_stp.csv', '"'],
+    ['la Jolla' , 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_ljo.csv', '"'],
+    ['Baja California Sur, Mexico', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_bcs.csv', '"'],
+    ['Mauna Loa',  'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_mlo.csv', '"'],
+    ['Cape Kumukahi, Hawaii', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_kum.csv', '"'],
+    ['Fanning Island', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_fan.csv', '"'],
+    ['American Samoa', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_sam.csv', '"'],
     ['Christmas Island', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_chr.csv', '"'],
-    ['Baring head NZ', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_nzd.csv', '"']
+    ['Kermadec Islands, Raoul Island', 'https://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_ker.csv', '"'],
+    ['Baring head NZ', 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_nzd.csv', '"'],
+    ['South pole' , 'http://scrippsco2.ucsd.edu/assets/data/atmospheric/stations/flask_co2/daily/daily_flask_co2_spo.csv', '"'],
 ]
-
-
 
 
 
@@ -51,18 +67,25 @@ def downloadFileIfNecessary(url, commentChar):
     return af
 
 
-fig, ax = plt.subplots()
 
-for name,url,commentChar in scrippsData:
+combinedPlot = figure(title=f"Combined filtered CO2 Readings", x_axis_type="datetime", y_axis_label='ppm')
+rows = []
+
+for i,data in enumerate(scrippsData):
+    name,url,commentChar = data
     df = downloadFileIfNecessary(url, commentChar)
     print((name, df['cx'].min(), df.loc[df['cx'].idxmax()]))
-    df.plot(x='Date_Time', y='cx', title=name + " unfiltered CO2 readings") # Before any filtering
-    df = df[df['cx'] < 420]
-    ax.plot(df['Date_Time'], df['cx'], label=name)
-    df['day'] = df['Date_Time'].apply(lambda p: p.dayofyear)
-    fig2, bx = plt.subplots()    
     
-    for year in range(1969, 2018):
+    localPlot = figure(title=f"Unfiltered CO2 Readings {name}", x_axis_type="datetime", y_axis_label='ppm')
+    localPlot.line(df['Date_Time'], df['cx'])
+    df = df[df['cx'] < 420]
+    combinedPlot.line(df['Date_Time'], df['cx'], legend_label=name, line_color=Category20_20[i])
+
+    df['day'] = df['Date_Time'].apply(lambda p: p.dayofyear)
+
+    yearPlot = figure(title=f"Year CO2 comparison for {name}", x_axis_label='Day of year', y_axis_label='ppm')
+    
+    for yearIndex,year in enumerate(range(1969, 2021)):
         yearData = df[(df['Date_Time'] >= pd.Timestamp(datetime.datetime(year, 1, 1))) 
                     & (df['Date_Time'] < pd.Timestamp(datetime.datetime(year + 1, 1, 1)))]
                     
@@ -73,32 +96,13 @@ for name,url,commentChar in scrippsData:
         std = yearData['cx'].std(skipna=True)
         if std:
             yearData = yearData[(yearData['cx'] < (2 * std)) & (yearData['cx'] > (-2 * std))]
-        bx.plot(yearData['day'], yearData['cx'])
-        bx.set_title(name + " Seasonal C02 readings")
-        bx.set_ylabel("CO2 relative ppm")
-        bx.set_xlabel("Day of year")
-    
+            
+        yearPlot.line(yearData['day'], yearData['cx'], line_color=Category20_20[yearIndex % 20])
+   
+    rows.append(row(localPlot, yearPlot))
 
 
-ax.set_ylabel("CO2 ppm")
-ax.set_xlabel('Date')
-ax.legend(loc='best')
-ax.set_title("CO2 trends, combined graphs")
+rows.insert(0, row(combinedPlot, sizing_mode="scale_width"))
+show(column(rows))
 
 
-
-
-
-#for year in range(1969, 2018):
-#    yearData = laJolla[(laJolla['Date'] >= pd.Timestamp(datetime.datetime(year, 1, 1))) 
-#                & (laJolla['Date'] < pd.Timestamp(datetime.datetime(year + 1, 1, 1)))]
-#                
-#    
-#    print(year, yearData['cx'].min(), yearData['cx'].max(), yearData['cx'].mean())
-#    ax.plot(yearData['Date'].apply(lambda p: p.dayofyear), yearData['cx'])
-#
-#ax.set_xlabel("Day of year")
-#ax.set_ylabel("CO2 ppm")
-#ax.set_title("Seasonal Daily CO2 ppm At La Jolla for 1969 to 2018")
-#
-plt.show()
