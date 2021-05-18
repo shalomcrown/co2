@@ -68,7 +68,7 @@ def downloadFileIfNecessary(url, commentChar):
 
 
 
-combinedPlot = figure(title=f"Combined filtered CO2 Readings", x_axis_type="datetime", y_axis_label='ppm')
+combinedPlot = figure(title=f"Combined filtered CO2 Readings", x_axis_type="datetime", y_axis_label='ppm', width=1600)
 rows = []
 
 for i,data in enumerate(scrippsData):
@@ -102,7 +102,7 @@ for i,data in enumerate(scrippsData):
     rows.append(row(localPlot, yearPlot))
 
 
-rows.insert(0, row(combinedPlot, sizing_mode="scale_width"))
+rows.insert(0, row(combinedPlot))
 show(column(rows))
 
 
