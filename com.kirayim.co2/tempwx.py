@@ -90,12 +90,20 @@ class StationsLayer(SlippyLayer):
     
     def do_draw(self, gpsmap, dc):
         size = gpsmap.GetSize()
-        for row in self.stationsDf.rows:
-            x, y = gpsmap.ll2xy(row["LATITUDE"], row["LONGITUDE"])
-            if x > 0 and x < size.width and y > 0 and y < size.height:
+        
+        items = self.stationsDf[(gpsmap.S < self.stationsDf["LATITUDE"]) 
+                                    & (self.stationsDf["LATITUDE"] < gpsmap.N)
+                                    & (gpsmap.W < self.stationsDf["LONGITUDE"])
+                                    & (self.stationsDf["LONGITUDE"] < gpsmap.E)
+                                    ]
+        
+        for _, row in items.iterrows():
+            lat, lon = row["LATITUDE"], row["LONGITUDE"]
+            if gpsmap.isOnScreen(lat, lon):
+                x, y = gpsmap.ll2xy(row["LATITUDE"], row["LONGITUDE"])
                 dc.SetPen(wx.Pen(wx.BLACK, 2))
-                dc.setBrush(wx.Brush(wx.RED))
-                dc.DrawCircle(x, y, 5)
+                dc.SetBrush(wx.Brush(wx.RED))
+                dc.DrawCircle(int(x), int(y), 5)
 
 
 # =============================================================================
@@ -142,17 +150,20 @@ class TempWidget(wx.Frame):
             self.mapPanel.layer_remove(self.stationsLayer)
             self.stationsLayer = None
         
+        wx.CallAfter(self.statusbar.SetStatusText, 'Reading stations')
         self.stationsDf = tempUtils.readStations()
         self.stationsLayer = StationsLayer(self.stationsDf)
         self.mapPanel.layer_add(StationsLayer(self.stationsDf))
+        wx.CallAfter(self.statusbar.SetStatusText, 'Show stations')
         self.mapPanel.Refresh()
 
     def downloadStationsInner(self):
         tempUtils.downloadStationsList()
+        wx.CallAfter(self.statusbar.SetStatusText, 'Finished downloading stations')
         self.showStations()
 
     def downloadSations(self, _):
-        self.statusbar.SetStatusText('Downloading stations')
+        wx.CallAfter(self.statusbar.SetStatusText, 'Downloading stations')
         thread = threading.Thread(target=self.downloadStationsInner, name='StationDownload')
         thread.setDaemon(True)
         thread.start()

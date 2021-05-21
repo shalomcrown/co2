@@ -31,7 +31,13 @@ def readStations():
     colspecs = [(0, 11), (12, 19), (21, 29), (31, 36), (38, 39), (41, 70), (72, 74), (76, 78), (80, 84)]
     columnNames =  ["ID", "LATITUDE", "LONGITUDE", "ELEVATION", "STATE", "NAME", "GSN FLAG", "HCN/CRN FLAG", "WMO ID",]
 
-    return pd.read_fwf(stationsPath(), colspecs=colspecs, names=columnNames)
+    df = pd.read_fwf(stationsPath(), colspecs=colspecs, names=columnNames)
+    
+    df['LATITUDE'] = pd.to_numeric(df['LATITUDE'])
+    df['LONGITUDE'] = pd.to_numeric(df['LONGITUDE'])
+    df['ELEVATION'] = pd.to_numeric(df['ELEVATION'])
+    
+    return df
 
         
 def hasStationsList():
