@@ -87,6 +87,10 @@ def setupLogging():
 class StationsLayer(SlippyLayer):
     def __init__(self, stationsDf):
         self.stationsDf = stationsDf
+        self.items = None
+    
+    def getItems(self):
+        return self.items
     
     def do_draw(self, gpsmap, dc):
         size = gpsmap.GetSize()
@@ -97,13 +101,14 @@ class StationsLayer(SlippyLayer):
                                     & (self.stationsDf["LONGITUDE"] < gpsmap.E)
                                     ]
         
-        for _, row in items.iterrows():
-            lat, lon = row["LATITUDE"], row["LONGITUDE"]
-            if gpsmap.isOnScreen(lat, lon):
-                x, y = gpsmap.ll2xy(row["LATITUDE"], row["LONGITUDE"])
+        if not items.empty:
+            self.items = items.copy()
+            self.items['x'], self.items['y'] = zip(*self.items.apply(lambda row: gpsmap.ll2xy(row["LATITUDE"], row["LONGITUDE"]), axis=1))
+            
+            for _, row in self.items.iterrows():
                 dc.SetPen(wx.Pen(wx.BLACK, 2))
                 dc.SetBrush(wx.Brush(wx.RED))
-                dc.DrawCircle(int(x), int(y), 5)
+                dc.DrawCircle(int(row['x']), int(row['y']), 5)
 
 
 # =============================================================================
@@ -132,6 +137,7 @@ class TempWidget(wx.Frame):
 
         self.stationsLayer = None
 
+        self.mapPanel.Bind(wx.EVT_RIGHT_DOWN, self.mapClick, self.mapPanel)
         
         threading.Thread(target=self.showStations).start()
         
@@ -139,6 +145,12 @@ class TempWidget(wx.Frame):
         self.Center()
         self.Show()
 
+
+    def mapClick(self, evt):
+        if self.stationsLayer and self.stationsLayer.getItems() is not None and not self.stationsLayer.getItems().empty:
+            items = self.stationsLayer.getItems()
+            pythagoras = (items["x"] - evt.X) ** 2 + (items["y"] - evt.Y) ** 2
+            station = self.stations.iloc[pythagoras.idxmin()]  
 
     # =============================================================================
 
@@ -153,7 +165,7 @@ class TempWidget(wx.Frame):
         wx.CallAfter(self.statusbar.SetStatusText, 'Reading stations')
         self.stationsDf = tempUtils.readStations()
         self.stationsLayer = StationsLayer(self.stationsDf)
-        self.mapPanel.layer_add(StationsLayer(self.stationsDf))
+        self.mapPanel.layer_add(self.stationsLayer)
         wx.CallAfter(self.statusbar.SetStatusText, 'Show stations')
         self.mapPanel.Refresh()
 
