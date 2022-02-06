@@ -6,5 +6,13 @@
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8.5" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="wordplay" />
+    <orderEntry type="module" module-name="SDR" />
+    <orderEntry type="module" module-name="CAPISupervisorTest" />
+    <orderEntry type="module" module-name="drone-state" />
+    <orderEntry type="module" module-name="fuzzer" />
+    <orderEntry type="module" module-name="logparser" />
+    <orderEntry type="module" module-name="game-of-life" />
+    <orderEntry type="module" module-name="network-analysis" />
   </component>
 </module>

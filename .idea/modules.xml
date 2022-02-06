@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../automation/CAPISupervisorTest/CAPISupervisorTest.iml" filepath="$PROJECT_DIR$/../../automation/CAPISupervisorTest/CAPISupervisorTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SDR/.idea/SDR.iml" filepath="$PROJECT_DIR$/../SDR/.idea/SDR.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/co2.iml" filepath="$PROJECT_DIR$/.idea/co2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../automation/drone-state/.idea/drone-state.iml" filepath="$PROJECT_DIR$/../../automation/drone-state/.idea/drone-state.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../automation/fuzzer/.idea/fuzzer.iml" filepath="$PROJECT_DIR$/../../automation/fuzzer/.idea/fuzzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../game-of-life/.idea/game-of-life.iml" filepath="$PROJECT_DIR$/../game-of-life/.idea/game-of-life.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../automation/logparser/.idea/logparser.iml" filepath="$PROJECT_DIR$/../../automation/logparser/.idea/logparser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../automation/network-analysis/.idea/network-analysis.iml" filepath="$PROJECT_DIR$/../../automation/network-analysis/.idea/network-analysis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../wordplay/.idea/wordplay.iml" filepath="$PROJECT_DIR$/../wordplay/.idea/wordplay.iml" />
     </modules>
   </component>
 </project>
