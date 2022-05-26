@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf2f8dd9-6e63-465d-9831-6956dc053edd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../SDR/sdr.py" beforeDir="false" afterPath="$PROJECT_DIR$/../SDR/sdr.py" afterDir="false" />
+    <list default="true" id="bf2f8dd9-6e63-465d-9831-6956dc053edd" name="Default" comment="Added initial disparity map">
+      <change afterPath="$PROJECT_DIR$/../threesixty/calculator.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/co2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/co2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../threesixty/calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../threesixty/calibration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../threesixty/stereo_wx.py" beforeDir="false" afterPath="$PROJECT_DIR$/../threesixty/stereo_wx.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +39,17 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../SDR" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../threesixty" />
     <option name="ROOT_SYNC" value="SYNC" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file:///usr/lib/python3/dist-packages/requests/adapters.py" root0="SKIP_INSPECTION" />
@@ -53,22 +63,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/hq_mc.py" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/shalom/workspace/personal/threesixty/calibration.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../threesixty" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../vision" />
+      <recent name="$PROJECT_DIR$/../threesixty" />
       <recent name="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.hq_mc">
+  <component name="RunManager" selected="Python.Calibration">
+    <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python">
+      <module name="threesixty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../threesixty" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/calibration.py" />
+      <option name="PARAMETERS" value="$USER_HOME$/Videos/Projects/360/two-usbs /dev/video4 /dev/video6" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="CapiSupervisorTest" type="PythonConfigurationType" factoryName="Python">
       <module name="CAPISupervisorTest" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,6 +126,72 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/CAPISupervisorTest/CapiSupervisorTest.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Stereo Calibration no cams" type="PythonConfigurationType" factoryName="Python">
+      <module name="threesixty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Videos/Projects/360/GuyGuiCam" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/stereo_calibration.py" />
+      <option name="PARAMETERS" value="$USER_HOME$/Videos/Projects/360/two-usbs" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Stereo Film" type="PythonConfigurationType" factoryName="Python">
+      <module name="threesixty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../threesixty" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/stereo_film.py" />
+      <option name="PARAMETERS" value="$USER_HOME$/Videos/Projects/360/GuyGuiCam/improved_params2.xml /dev/video6 /dev/video4" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Voltages" type="PythonConfigurationType" factoryName="Python">
+      <module name="network-analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/outputs/DS215" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/voltages.py" />
+      <option name="PARAMETERS" value="-f $USER_HOME$/outputs/DS215/ds215.csv" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -135,20 +243,64 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="drone-state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="drone-state" />
+    <configuration name="contours" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="logparser" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../automation/drone-state" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/outputs/DS213" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/drone-state/drone-state.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../vision/contours.py" />
+      <option name="PARAMETERS" value="Image.jpg" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="corners" type="PythonConfigurationType" factoryName="Python">
+      <module name="threesixty" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Videos/Projects/360" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/corners.py" />
+      <option name="PARAMETERS" value="$USER_HOME$/Videos/Projects/360/vlcsnap-2022-03-24-17h11m16s616.png" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="fuzzer" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="network-analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer/fuzzer.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -179,28 +331,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="locks" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="SDR" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../SDR" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/locks.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="lte" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="wordplay" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,6 +346,28 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/lte.py" />
       <option name="PARAMETERS" value="hq-log.2021-12-08-025941.log.gz" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="qr" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="logparser" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/outputs/DS213" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../vision/qr.py" />
+      <option name="PARAMETERS" value="Image.jpg" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -245,20 +397,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tempDaily" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="co2" />
+    <configuration name="stereo_wx" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="threesixty" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com.kirayim.co2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../threesixty" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com.kirayim.co2/tempDaily.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/stereo_wx.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -267,21 +419,65 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tempDailyPl" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="co2" />
+    <configuration name="stiches" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="threesixty" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com.kirayim.co2" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Videos/Projects/360" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com.kirayim.co2/tempDailyPl.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/stiches.py" />
+      <option name="PARAMETERS" value="/dev/video4 /dev/video6" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test3d" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="fuzzer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer/test3d.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="to-panorama" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="network-analysis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Videos/Projects/360" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../threesixty/to-panorama.py" />
+      <option name="PARAMETERS" value="100_0005.MP4 100_0005-panoramic.MP4" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -295,19 +491,27 @@
       <item itemvalue="Python.sdr" />
       <item itemvalue="Python.lte" />
       <item itemvalue="Python.hq_mc" />
-      <item itemvalue="Python.drone-state" />
-      <item itemvalue="Python.locks" />
-      <item itemvalue="Python.tempDailyPl" />
-      <item itemvalue="Python.tempDaily" />
+      <item itemvalue="Python.fuzzer" />
+      <item itemvalue="Python.stiches" />
+      <item itemvalue="Python.corners" />
+      <item itemvalue="Python.Calibration" />
+      <item itemvalue="Python.Stereo Calibration no cams" />
+      <item itemvalue="Python.Stereo Film" />
+      <item itemvalue="Python.Voltages" />
+      <item itemvalue="Python.contours" />
+      <item itemvalue="Python.qr" />
       <item itemvalue="Python.analyze" />
+      <item itemvalue="Python.test3d" />
+      <item itemvalue="Python.to-panorama" />
+      <item itemvalue="Python.stereo_wx" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.qr" />
+        <item itemvalue="Python.stereo_wx" />
+        <item itemvalue="Python.to-panorama" />
+        <item itemvalue="Python.test3d" />
         <item itemvalue="Python.analyze" />
-        <item itemvalue="Python.drone-state" />
-        <item itemvalue="Python.tempDaily" />
-        <item itemvalue="Python.tempDailyPl" />
-        <item itemvalue="Python.locks" />
       </list>
     </recent_temporary>
   </component>
@@ -331,12 +535,117 @@
       <workItem from="1643778637232" duration="640000" />
       <workItem from="1643782540149" duration="210000" />
       <workItem from="1643895714544" duration="1029000" />
-      <workItem from="1644147670909" duration="1379000" />
+      <workItem from="1644147670909" duration="2902000" />
+      <workItem from="1645625851108" duration="1424000" />
+      <workItem from="1646054741144" duration="660000" />
+      <workItem from="1647177903788" duration="3485000" />
+      <workItem from="1647241595186" duration="301000" />
+      <workItem from="1647254429520" duration="1136000" />
+      <workItem from="1647350956213" duration="347000" />
+      <workItem from="1647361621376" duration="1258000" />
+      <workItem from="1647405032680" duration="3687000" />
+      <workItem from="1647972288505" duration="3834000" />
+      <workItem from="1648051003582" duration="2906000" />
+      <workItem from="1648104954199" duration="11569000" />
+      <workItem from="1648133829464" duration="5384000" />
+      <workItem from="1648376962980" duration="3995000" />
+      <workItem from="1648702926898" duration="16444000" />
+      <workItem from="1648737335523" duration="11231000" />
+      <workItem from="1648966031465" duration="11553000" />
+      <workItem from="1648997115152" duration="7146000" />
+      <workItem from="1649042890626" duration="13253000" />
+      <workItem from="1649086063948" duration="3582000" />
+      <workItem from="1649129161397" duration="785000" />
+      <workItem from="1649142418184" duration="1376000" />
+      <workItem from="1651044900587" duration="6748000" />
+      <workItem from="1651068916044" duration="3553000" />
+      <workItem from="1651118921901" duration="3377000" />
+      <workItem from="1651156361661" duration="14708000" />
+      <workItem from="1651412485396" duration="1564000" />
+      <workItem from="1651587136039" duration="358000" />
+      <workItem from="1652365781381" duration="266000" />
+      <workItem from="1652597656115" duration="10031000" />
+      <workItem from="1652682856636" duration="15925000" />
+      <workItem from="1652781306554" duration="6572000" />
+      <workItem from="1652809077196" duration="1643000" />
+      <workItem from="1652846547179" duration="5961000" />
+      <workItem from="1653034020766" duration="699000" />
+      <workItem from="1653538084422" duration="18009000" />
     </task>
+    <task id="LOCAL-00001" summary="Logparser: Fix master/slave - sometimes no mission ID">
+      <created>1644149440650</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644149440650</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added stereo calibration">
+      <created>1648725044263</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648725044263</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add Stereo film">
+      <created>1648974324729</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648974324729</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add Stereo film">
+      <created>1651118965498</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1651118965499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Working anaglyph">
+      <created>1651237362502</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651237362502</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Start addign sliders for depth params">
+      <created>1651343608233</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651343608233</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added initial disparity map">
+      <created>1651348918593</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651348918593</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Logparser: Fix master/slave - sometimes no mission ID" />
+    <MESSAGE value="Added stereo calibration" />
+    <MESSAGE value="Add Stereo film" />
+    <MESSAGE value="Working anaglyph" />
+    <MESSAGE value="Start addign sliders for depth params" />
+    <MESSAGE value="Added initial disparity map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added initial disparity map" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -362,27 +671,51 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/hq_mc.py</url>
-          <line>1702</line>
-          <option name="timeStamp" value="19" />
+          <url>file://$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer/test3d.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/hq_mc.py</url>
-          <line>1706</line>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer/test3d.py</url>
+          <line>82</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/hq_mc.py</url>
-          <line>1721</line>
-          <option name="timeStamp" value="24" />
+          <url>file://$PROJECT_DIR$/../threesixty/stiches.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../threesixty/stereo_calibration.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/co2$lte.coverage" NAME="lte Coverage Results" MODIFIED="1638953753271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS216/gcs-fail" />
-    <SUITE FILE_PATH="coverage/co2$hq_mc.coverage" NAME="hq_mc Coverage Results" MODIFIED="1644149072884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS210" />
-    <SUITE FILE_PATH="coverage/co2$drone_state.coverage" NAME="drone-state Coverage Results" MODIFIED="1638110781677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/drone-state" />
     <SUITE FILE_PATH="coverage/co2$analyze.coverage" NAME="analyze Coverage Results" MODIFIED="1638117037320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/network-analysis" />
+    <SUITE FILE_PATH="coverage/co2$Stereo_Film.coverage" NAME="Stereo Film Coverage Results" MODIFIED="1649086522071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$Calibration.coverage" NAME="Calibration Coverage Results" MODIFIED="1653570218083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$Calibration_no_cams.coverage" NAME="Calibration no cams Coverage Results" MODIFIED="1648801409864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360/GuyGuiCam" />
+    <SUITE FILE_PATH="coverage/co2$stiches.coverage" NAME="stiches Coverage Results" MODIFIED="1648703993277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360" />
+    <SUITE FILE_PATH="coverage/co2$qr.coverage" NAME="qr Coverage Results" MODIFIED="1652789868928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS213" />
+    <SUITE FILE_PATH="coverage/co2$stereo_wx.coverage" NAME="stereo_wx Coverage Results" MODIFIED="1652365786597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$Voltages.coverage" NAME="Voltages Coverage Results" MODIFIED="1652781355140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS215" />
+    <SUITE FILE_PATH="coverage/co2$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1648104965177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/co2$test3d.coverage" NAME="test3d Coverage Results" MODIFIED="1647408046248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+    <SUITE FILE_PATH="coverage/co2$drone_state.coverage" NAME="drone-state Coverage Results" MODIFIED="1638110781677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/drone-state" />
+    <SUITE FILE_PATH="coverage/co2$fuzzer.coverage" NAME="fuzzer Coverage Results" MODIFIED="1645625958071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+    <SUITE FILE_PATH="coverage/co2$contours.coverage" NAME="contours Coverage Results" MODIFIED="1652809919868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS213" />
+    <SUITE FILE_PATH="coverage/co2$hq_mc.coverage" NAME="hq_mc Coverage Results" MODIFIED="1644149153348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS210" />
+    <SUITE FILE_PATH="coverage/co2$corners.coverage" NAME="corners Coverage Results" MODIFIED="1648135162163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360" />
+    <SUITE FILE_PATH="coverage/co2$lte.coverage" NAME="lte Coverage Results" MODIFIED="1638953753271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS216/gcs-fail" />
   </component>
 </project>

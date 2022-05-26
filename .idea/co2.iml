@@ -14,5 +14,7 @@
     <orderEntry type="module" module-name="logparser" />
     <orderEntry type="module" module-name="game-of-life" />
     <orderEntry type="module" module-name="network-analysis" />
+    <orderEntry type="module" module-name="threesixty" />
+    <orderEntry type="module" module-name="vision" />
   </component>
 </module>
