@@ -109,6 +109,10 @@ class StationsLayer(SlippyLayer):
                 dc.SetPen(wx.Pen(wx.BLACK, 2))
                 dc.SetBrush(wx.Brush(wx.RED))
                 dc.DrawCircle(int(row['x']), int(row['y']), 5)
+                dc.SetTextForeground(wx.Colour(170, 211, 223))
+                dc.DrawText(row["NAME"], int(row['x']) + 6, int(row['y']) - 4)
+                dc.SetTextForeground(wx.BLACK)
+                dc.DrawText(row["NAME"], int(row['x']) + 7, int(row['y']) - 3)
 
 
 # =============================================================================
@@ -145,12 +149,66 @@ class TempWidget(wx.Frame):
         self.Center()
         self.Show()
 
+    # =================================================================
+    def readData(self, station):
+        stationOutputFile = os.path.expanduser(f'~/Downloads/Weather/{station.ID}.csv')
+        if os.path.exists(stationOutputFile):
+            stationDF = pd.read_csv(stationOutputFile, index_col=0, parse_dates=True)
+        else:
+            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
+            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
+            dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
+            with tarfile.open(dataPath) as alltar:
+                stationFileTarInfo = alltar.getmember(f'ghcnd_all/{station.ID}.dly')
+                with alltar.extractfile(stationFileTarInfo) as stationFile:
+                    for line in stationFile:
+                        line = line if isinstance(line, str) else line.decode('utf-8')
+                        element = line[17:21]
+                        if element not in interesingElements:
+                            continue
 
+                        stationId = line[0:11]
+                        startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
+
+                        for day in range(1, 32):
+                            startField = 21 + (day - 1) * 8
+                            value = float(line[startField:startField + 5].strip())
+                            if value == -9999:
+                                continue
+                            fieldDate = startDate.replace(day=day)
+                            stationDF.at[fieldDate, element] = value
+            stationDF.to_csv(stationOutputFile)
+
+        yearlyPrecip = stationDF.groupby(lambda p: p.year)['PRCP'].sum()
+        print(yearlyPrecip)
+        # yearlyPlot = figure(title=f"Precipitation by calendar year: {station.NAME}", x_axis_label='Year',
+        #                     y_axis_label='mm * 100')
+        # yearlyPlot.line(yearlyPrecip.index, yearlyPrecip)
+
+        monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+
+        # monthlyPlot = figure(title=f"Precipitation by month: {station.NAME}", x_axis_type="datetime",
+        #                      x_axis_label='Month', y_axis_label='mm * 100')
+        # monthlyPlot.line(monthlyPrecip.index, monthlyPrecip)
+        #
+        # monthlyComparisonPlot = figure(title=f"Precipitation by month comparison: {station.NAME}", x_axis_label='Month',
+        #                                y_axis_label='mm * 100')
+
+        # for year in range(stationDF.index.min().year, stationDF.index.max().year + 1):
+        #     yearData = stationDF[stationDF.index.year == year].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+        #     monthlyComparisonPlot.line(yearData.index.month, yearData)
+        #
+        # stationRow = row(yearlyPlot, monthlyPlot, monthlyComparisonPlot)
+        # curdoc().add_root(stationRow)
+
+    # =================================================================
     def mapClick(self, evt):
         if self.stationsLayer and self.stationsLayer.getItems() is not None and not self.stationsLayer.getItems().empty:
             items = self.stationsLayer.getItems()
             pythagoras = (items["x"] - evt.X) ** 2 + (items["y"] - evt.Y) ** 2
-            station = self.stations.iloc[pythagoras.idxmin()]  
+            station = self.stationsDf.iloc[pythagoras.idxmin()]
+            print(station)
+            self.readData(station)
 
     # =============================================================================
 
