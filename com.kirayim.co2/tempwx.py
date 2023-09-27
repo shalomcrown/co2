@@ -164,7 +164,7 @@ class TempWidget(wx.Frame):
 
         sizer = wx.BoxSizer(wx.HORIZONTAL)
         sizer.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
-        panel.SetSizer(sizer)
+        yearlyPlot.SetSizer(sizer)
 
         yearlyPlot.SetSize(0, 0, 800, 600)
         yearlyPlot.Show(True)
@@ -203,7 +203,7 @@ class TempWidget(wx.Frame):
             station = self.stationsDf.iloc[pythagoras.idxmin()]
             print(station)
             thread = threading.Thread(target=self.readData, args=(station, ), name='DataDownload')
-            thread.setDaemon(True)
+            thread.daemon = True
             thread.start()
             wx.CallAfter(self.statusbar.SetStatusText, f'Downloading data for {station["NAME"]}')
 

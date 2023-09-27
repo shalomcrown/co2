@@ -85,11 +85,15 @@ def getStationData(station):
     monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
     monthlyComparison = []
 
+    indexSeries = stationDF.index.to_series()
+
     for year in range(stationDF.index.min().year, stationDF.index.max().year + 1):
         start = datetime.datetime(year=year, month=1, day=1)
         stop = datetime.datetime(year=year + 1, month=1, day=1)
-        yearData = stationDF[stationDF.index.to_series().between(start, stop)].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
-        monthlyComparison.append(yearData)
+
+        if start in indexSeries and stop in indexSeries:
+            yearData = stationDF[indexSeries.between(start, stop)].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+            monthlyComparison.append(yearData)
 
     print(yearlyPrecip)
     return yearlyPrecip, monthlyPrecip, monthlyComparison
