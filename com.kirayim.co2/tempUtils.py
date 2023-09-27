@@ -50,3 +50,46 @@ def downloadStationsList():
     ftp.cwd(noaaDaily)
     os.makedirs(cachePath, exist_ok = True)
     ftp.retrbinary("RETR " + "ghcnd-stations.txt", open(stationsPath(), 'wb').write)
+
+
+def getStationData(station):
+    stationOutputFile = os.path.expanduser(f'~/Downloads/Weather/{station.ID}.csv')
+    if os.path.exists(stationOutputFile):
+        stationDF = pd.read_csv(stationOutputFile, index_col=0, parse_dates=True)
+    else:
+        interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
+        stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
+        dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
+        with tarfile.open(dataPath) as alltar:
+            stationFileTarInfo = alltar.getmember(f'ghcnd_all/{station.ID}.dly')
+            with alltar.extractfile(stationFileTarInfo) as stationFile:
+                for line in stationFile:
+                    line = line if isinstance(line, str) else line.decode('utf-8')
+                    element = line[17:21]
+                    if element not in interesingElements:
+                        continue
+
+                    stationId = line[0:11]
+                    startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
+
+                    for day in range(1, 32):
+                        startField = 21 + (day - 1) * 8
+                        value = float(line[startField:startField + 5].strip())
+                        if value == -9999:
+                            continue
+                        fieldDate = startDate.replace(day=day)
+                        stationDF.at[fieldDate, element] = value
+        stationDF.to_csv(stationOutputFile)
+
+    yearlyPrecip = stationDF.groupby(lambda p: p.year)['PRCP'].sum()
+    monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+    monthlyComparison = []
+
+    for year in range(stationDF.index.min().year, stationDF.index.max().year + 1):
+        start = datetime.datetime(year=year, month=1, day=1)
+        stop = datetime.datetime(year=year + 1, month=1, day=1)
+        yearData = stationDF[stationDF.index.to_series().between(start, stop)].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
+        monthlyComparison.append(yearData)
+
+    print(yearlyPrecip)
+    return yearlyPrecip, monthlyPrecip, monthlyComparison

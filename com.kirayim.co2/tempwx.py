@@ -31,9 +31,12 @@ try:
     import av.datasets
     
     import wx, wx.grid
+    from wx.lib import plot as wxplot
 
     from com.kirayim.wxmapwidget.wxmapwidget import WxMapWidget, PosMarker, ScaleMarkLayer, DroneSymbol, SlippyLayer
-    
+
+
+
     import cv2
     import numpy as np
 except Exception as e:
@@ -150,42 +153,26 @@ class TempWidget(wx.Frame):
         self.Show()
 
     # =================================================================
-    def readData(self, station):
-        stationOutputFile = os.path.expanduser(f'~/Downloads/Weather/{station.ID}.csv')
-        if os.path.exists(stationOutputFile):
-            stationDF = pd.read_csv(stationOutputFile, index_col=0, parse_dates=True)
-        else:
-            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
-            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
-            dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
-            with tarfile.open(dataPath) as alltar:
-                stationFileTarInfo = alltar.getmember(f'ghcnd_all/{station.ID}.dly')
-                with alltar.extractfile(stationFileTarInfo) as stationFile:
-                    for line in stationFile:
-                        line = line if isinstance(line, str) else line.decode('utf-8')
-                        element = line[17:21]
-                        if element not in interesingElements:
-                            continue
 
-                        stationId = line[0:11]
-                        startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
+    def showStationData(self, station, yearlyPrecip, monthlyPrecip, monthlyComparison):
+        yearlyPlot = wx.Frame(self, wx.ID_ANY, f'Yearly precipitation for station {station["NAME"]}')
+        line = wxplot.PolyLine(list(zip(yearlyPrecip.index, yearlyPrecip)) , colour=wx.Colour(128, 128, 0), width=3,)
 
-                        for day in range(1, 32):
-                            startField = 21 + (day - 1) * 8
-                            value = float(line[startField:startField + 5].strip())
-                            if value == -9999:
-                                continue
-                            fieldDate = startDate.replace(day=day)
-                            stationDF.at[fieldDate, element] = value
-            stationDF.to_csv(stationOutputFile)
+        graphics = wxplot.PlotGraphics([line])
+        panel = wxplot.PlotCanvas(yearlyPlot)
+        panel.Draw(graphics)
 
-        yearlyPrecip = stationDF.groupby(lambda p: p.year)['PRCP'].sum()
-        print(yearlyPrecip)
+        sizer = wx.BoxSizer(wx.HORIZONTAL)
+        sizer.Add(panel, 1, wx.EXPAND | wx.ALL, 10)
+        panel.SetSizer(sizer)
+
+        yearlyPlot.SetSize(0, 0, 800, 600)
+        yearlyPlot.Show(True)
+
         # yearlyPlot = figure(title=f"Precipitation by calendar year: {station.NAME}", x_axis_label='Year',
         #                     y_axis_label='mm * 100')
         # yearlyPlot.line(yearlyPrecip.index, yearlyPrecip)
 
-        monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
 
         # monthlyPlot = figure(title=f"Precipitation by month: {station.NAME}", x_axis_type="datetime",
         #                      x_axis_label='Month', y_axis_label='mm * 100')
@@ -202,13 +189,23 @@ class TempWidget(wx.Frame):
         # curdoc().add_root(stationRow)
 
     # =================================================================
+    def readData(self, station):
+        yearlyPrecip, monthlyPrecip, monthlyComparison = tempUtils.getStationData(station)
+        wx.CallAfter(self.statusbar.SetStatusText, f'Finished downloading data for {station["NAME"]}')
+        wx.CallAfter(self.showStationData, station, yearlyPrecip, monthlyPrecip, monthlyComparison)
+
+
+    # =================================================================
     def mapClick(self, evt):
         if self.stationsLayer and self.stationsLayer.getItems() is not None and not self.stationsLayer.getItems().empty:
             items = self.stationsLayer.getItems()
             pythagoras = (items["x"] - evt.X) ** 2 + (items["y"] - evt.Y) ** 2
             station = self.stationsDf.iloc[pythagoras.idxmin()]
             print(station)
-            self.readData(station)
+            thread = threading.Thread(target=self.readData, args=(station, ), name='DataDownload')
+            thread.setDaemon(True)
+            thread.start()
+            wx.CallAfter(self.statusbar.SetStatusText, f'Downloading data for {station["NAME"]}')
 
     # =============================================================================
 

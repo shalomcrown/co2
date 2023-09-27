@@ -17,7 +17,7 @@ import os.path
 import tarfile
 import logging
 import datetime
-from bokeh.util.sampledata import DataFrame
+#from bokeh.util.sampledata import DataFrame
 
 logger = None
 
