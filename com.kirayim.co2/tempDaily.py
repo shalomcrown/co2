@@ -1,4 +1,4 @@
-
+import time
 
 # ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily
 
@@ -17,6 +17,10 @@ import os.path
 import tarfile
 import logging
 import datetime
+import math
+import requests
+import shutil
+import gzip
 #from bokeh.util.sampledata import DataFrame
 
 logger = None
@@ -29,6 +33,15 @@ class TempDaily:
         columnNames =  ["ID", "LATITUDE", "LONGITUDE", "ELEVATION", "STATE", "NAME", "GSN FLAG", "HCN/CRN FLAG", "WMO ID",]
 
         stationsPath = os.path.expanduser("~/Downloads/Weather/ghcnd-stations.txt")
+
+        if not os.path.exists(stationsPath):
+            print(f"Downloading ghcnd-stations.txt")
+            with requests.get(url="https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt", stream=True) as result:
+                result.raise_for_status()
+                print(f"Saving ghcnd-stations.txt")
+                with open(stationsPath, 'wb') as fl:
+                    shutil.copyfileobj(result.raw, fl)
+
         self.stations = pd.read_fwf(stationsPath, colspecs=colspecs, names=columnNames)
 
     #---------------------------------------------------------------------
@@ -68,54 +81,118 @@ class TempDaily:
         logger.debug("Periodic callback")
     #---------------------------------------------------------------------
 
+    def getStationDataDly(self, station):
+        try:
+            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
+            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
+
+            dataPath = os.path.expanduser(f"~/Downloads/Weather/{station.ID}.dly")
+
+            if not os.path.exists(dataPath) or os.path.getmtime(dataPath) < time.time() - 30 * 3600 * 24:
+                print(f"Downloading {dataPath}")
+                with requests.get(url=f"https://www.ncei.noaa.gov/pub/data/ghcn/daily/gsn/{station.ID}.dly",
+                                  stream=True) as result:
+                    result.raise_for_status()
+                    print(f"Saving {dataPath}")
+                    with open(dataPath, 'wb') as fl:
+                        shutil.copyfileobj(result.raw, fl)
+
+            with open(dataPath) as stationFile:
+                for line in stationFile:
+                    line = line if isinstance(line, str) else line.decode('utf-8')
+                    element = line[17:21]
+                    if element not in interesingElements:
+                        continue
+
+                    stationId = line[0:11]
+                    startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
+
+                    for day in range(1, 32):
+                        startField = 21 + (day - 1) * 8
+                        value = float(line[startField:startField + 5].strip())
+                        if value == -9999:
+                            continue
+                        fieldDate = startDate.replace(day=day)
+                        stationDF.at[fieldDate, element] = value
+            return stationDF
+        except Exception as e:
+            print(f"Exception getting DLY {e}\n")
+            return None
+
+    # =================================================================
+
+    def getStationDataCsv(self, station):
+        try:
+            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
+            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
+
+            dataPath = os.path.expanduser(f"~/Downloads/Weather/{station.ID}..csv.gz")
+
+            if not os.path.exists(dataPath) or os.path.getmtime(dataPath) < time.time() - 30 * 3600 * 24:
+                print(f"Downloading {dataPath}")
+                with requests.get(url=f"https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_station/{station.ID}.csv.gz",
+                                  stream=True) as result:
+                    result.raise_for_status()
+                    print(f"Saving {dataPath}")
+                    with open(dataPath, 'wb') as fl:
+                        shutil.copyfileobj(result.raw, fl)
+
+                with open(dataPath) as stationFile:
+                    for line in stationFile:
+                        line = line if isinstance(line, str) else line.decode('utf-8')
+                        # TODO: Finish
+
+        except Exception as e:
+            print(f"Exception getting CSV {e}\n")
+            return None
+
+    # =================================================================
+
     def readData(self, station):
+        # station.ID = "IS000009972" # Fix beit dagan
+        # station.NAME = "Beit Dagan"
+
         stationOutputFile = os.path.expanduser(f'~/Downloads/Weather/{station.ID}.csv')
         if os.path.exists(stationOutputFile):
             stationDF = pd.read_csv(stationOutputFile, index_col=0, parse_dates=True)
         else:
-            interesingElements = ['PRCP', 'TMAX', 'TMIN', 'TAVG']
-            stationDF = pd.DataFrame(columns=['StationId', 'Date'] + interesingElements)
-            dataPath = os.path.expanduser("~/Downloads/Weather/ghcnd_all.tar.gz")
-            with tarfile.open(dataPath) as alltar:
-                stationFileTarInfo = alltar.getmember(f'ghcnd_all/{station.ID}.dly')
-                with alltar.extractfile(stationFileTarInfo) as stationFile:
-                    for line in stationFile:
-                        line = line if isinstance(line, str) else line.decode('utf-8')
-                        element = line[17:21]
-                        if element not in interesingElements:
-                            continue
-                        
-                        stationId = line[0:11]
-                        startDate = datetime.date(int(line[11:15]), int(line[15:17]), 1)
-    
-                        for day in range(1,32):
-                            startField = 21 + (day - 1) * 8
-                            value = float(line[startField:startField + 5].strip())
-                            if value == -9999:
-                                continue
-                            fieldDate = startDate.replace(day=day)
-                            stationDF.at[fieldDate, element] = value
+            stationDF = self.getStationDataDly(station)
+
+            if stationDF is None:
+                stationDF = self.getStationDataCsv(station)
+
             stationDF.to_csv(stationOutputFile)
-            
+
         yearlyPrecip = stationDF.groupby(lambda p: p.year)['PRCP'].sum()
-        print(yearlyPrecip)        
-        yearlyPlot = figure(title=f"Precipitation by calendar year: {station.NAME}", x_axis_label='Year', y_axis_label='mm * 100')
-        yearlyPlot.line(yearlyPrecip.index, yearlyPrecip)
-        
+        print(yearlyPrecip)
+        yearlyPrecipitationPlot = figure(title=f"Precipitation by calendar year: {station.NAME}", x_axis_label='Year', y_axis_label='mm * 100')
+        yearlyPrecipitationPlot.line(yearlyPrecip.index, yearlyPrecip)
+
         monthlyPrecip = stationDF.groupby(lambda p: p.replace(day=1))['PRCP'].sum()
         monthlyPlot = figure(title=f"Precipitation by month: {station.NAME}", x_axis_type="datetime", x_axis_label='Month', y_axis_label='mm * 100')
         monthlyPlot.line(monthlyPrecip.index, monthlyPrecip)
-        
+
         monthlyComparisonPlot = figure(title=f"Precipitation by month comparison: {station.NAME}", x_axis_label='Month', y_axis_label='mm * 100')
-        
+
         for year in range(stationDF.index.min().year, stationDF.index.max().year + 1):
             yearData = stationDF[stationDF.index.year == year].groupby(lambda p: p.replace(day=1))['PRCP'].sum()
             monthlyComparisonPlot.line(yearData.index.month, yearData)
-        
-        stationRow = row(yearlyPlot, monthlyPlot, monthlyComparisonPlot)
+
+        julyMax = stationDF[(stationDF.index.month == 7) & ~stationDF["TMAX"].isna()].groupby(lambda p: p.year)["TMAX"].mean()
+        decMin = stationDF[(stationDF.index.month == 12) & ~stationDF["TMIN"].isna()].groupby(lambda p: p.year)["TMIN"].mean()
+
+        julyMax = julyMax.mul(0.1)
+        decMin = decMin.mul(0.1)
+
+        tempPlot = figure(title=f"average July/Dec max/min: {station.NAME}", x_axis_label='Year', y_axis_label='C')
+        tempPlot.line(julyMax.index, julyMax, legend_label='July Max')
+        tempPlot.line(decMin.index, decMin, legend_label='Dec Min')
+
+
+        stationRow = row(yearlyPrecipitationPlot, monthlyPlot, monthlyComparisonPlot, tempPlot)
         curdoc().add_root(stationRow)
 
-                
+
 # ID            1-11   Character
 # YEAR         12-15   Integer
 # MONTH        16-17   Integer
@@ -184,5 +261,3 @@ if __name__ == '__main__':
 else:
     logging.basicConfig(level = logging.DEBUG, format ='[%(levelname)s] %(asctime)s  %(filename)s(%(lineno)d)  %(funcName)s %(message)s')
     logger = logging.getLogger('temps')
-    
-    

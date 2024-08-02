@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf2f8dd9-6e63-465d-9831-6956dc053edd" name="Default" comment="Added initial disparity map">
-      <change afterPath="$PROJECT_DIR$/../threesixty/calculator.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/co2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/co2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/mavlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/mavlink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../automation/logparser/hq_mc.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../automation/logparser/hq_mc.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../automation/logparser/logparser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../automation/logparser/logparser.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../threesixty/calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../threesixty/calibration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../threesixty/stereo_wx.py" beforeDir="false" afterPath="$PROJECT_DIR$/../threesixty/stereo_wx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.kirayim.co2/tempDaily.py" beforeDir="false" afterPath="$PROJECT_DIR$/com.kirayim.co2/tempDaily.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../threesixty" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -57,6 +57,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
   <component name="ProjectId" id="1lZ6jMaUAYUet6AxMQ9qHnXfRaT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -65,12 +68,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.co2try.executor": "Debug",
+    "Python.tempDaily.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/shalom/workspace/personal/threesixty/calibration.py",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/shalomc_home/workspace/personal/co2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
@@ -88,9 +98,10 @@
       <recent name="$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Calibration">
+  <component name="RunManager" selected="Python.tempDaily">
     <configuration name="Calibration" type="PythonConfigurationType" factoryName="Python">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -113,6 +124,7 @@
     </configuration>
     <configuration name="CapiSupervisorTest" type="PythonConfigurationType" factoryName="Python">
       <module name="CAPISupervisorTest" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -135,6 +147,7 @@
     </configuration>
     <configuration name="Stereo Calibration no cams" type="PythonConfigurationType" factoryName="Python">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -157,6 +170,7 @@
     </configuration>
     <configuration name="Stereo Film" type="PythonConfigurationType" factoryName="Python">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -179,6 +193,7 @@
     </configuration>
     <configuration name="Voltages" type="PythonConfigurationType" factoryName="Python">
       <module name="network-analysis" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -199,30 +214,9 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="analyze" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="network-analysis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../automation/network-analysis" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../automation/network-analysis/analyze.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="co2try" type="PythonConfigurationType" factoryName="Python">
       <module name="co2" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -230,7 +224,7 @@
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com.kirayim.co2" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -245,6 +239,7 @@
     </configuration>
     <configuration name="contours" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="logparser" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -267,6 +262,7 @@
     </configuration>
     <configuration name="corners" type="PythonConfigurationType" factoryName="Python">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -289,6 +285,7 @@
     </configuration>
     <configuration name="fuzzer" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="network-analysis" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -311,6 +308,7 @@
     </configuration>
     <configuration name="hq_mc" type="PythonConfigurationType" factoryName="Python">
       <module name="logparser" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -333,6 +331,7 @@
     </configuration>
     <configuration name="lte" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="wordplay" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -355,6 +354,7 @@
     </configuration>
     <configuration name="qr" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="logparser" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -377,6 +377,7 @@
     </configuration>
     <configuration name="sdr" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="SDR" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -399,6 +400,7 @@
     </configuration>
     <configuration name="stereo_wx" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -421,6 +423,7 @@
     </configuration>
     <configuration name="stiches" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="threesixty" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -441,8 +444,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tempDaily" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="co2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/com.kirayim.co2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/com.kirayim.co2/tempDaily.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test3d" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="fuzzer" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -465,6 +492,7 @@
     </configuration>
     <configuration name="to-panorama" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="network-analysis" />
+      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -499,21 +527,29 @@
       <item itemvalue="Python.Stereo Film" />
       <item itemvalue="Python.Voltages" />
       <item itemvalue="Python.contours" />
+      <item itemvalue="Python.tempDaily" />
       <item itemvalue="Python.qr" />
-      <item itemvalue="Python.analyze" />
       <item itemvalue="Python.test3d" />
       <item itemvalue="Python.to-panorama" />
       <item itemvalue="Python.stereo_wx" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tempDaily" />
         <item itemvalue="Python.qr" />
         <item itemvalue="Python.stereo_wx" />
         <item itemvalue="Python.to-panorama" />
         <item itemvalue="Python.test3d" />
-        <item itemvalue="Python.analyze" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -571,6 +607,7 @@
       <workItem from="1652846547179" duration="5961000" />
       <workItem from="1653034020766" duration="699000" />
       <workItem from="1653538084422" duration="18009000" />
+      <workItem from="1722523439305" duration="11397000" />
     </task>
     <task id="LOCAL-00001" summary="Logparser: Fix master/slave - sometimes no mission ID">
       <created>1644149440650</created>
@@ -651,16 +688,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/com.kirayim.co2/tempDaily.py</url>
-          <line>142</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/com.kirayim.co2/tempDaily.py</url>
-          <line>71</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/../../automation/logparser/com/airobotics/logparser/locks.py</url>
           <line>31</line>
           <option name="timeStamp" value="12" />
@@ -690,6 +717,16 @@
           <line>7</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/com.kirayim.co2/tempDaily.py</url>
+          <line>191</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/com.kirayim.co2/tempDaily.py</url>
+          <line>180</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -701,21 +738,23 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/co2$analyze.coverage" NAME="analyze Coverage Results" MODIFIED="1638117037320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/network-analysis" />
-    <SUITE FILE_PATH="coverage/co2$Stereo_Film.coverage" NAME="Stereo Film Coverage Results" MODIFIED="1649086522071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
-    <SUITE FILE_PATH="coverage/co2$Calibration.coverage" NAME="Calibration Coverage Results" MODIFIED="1653570218083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
-    <SUITE FILE_PATH="coverage/co2$Calibration_no_cams.coverage" NAME="Calibration no cams Coverage Results" MODIFIED="1648801409864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360/GuyGuiCam" />
-    <SUITE FILE_PATH="coverage/co2$stiches.coverage" NAME="stiches Coverage Results" MODIFIED="1648703993277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360" />
-    <SUITE FILE_PATH="coverage/co2$qr.coverage" NAME="qr Coverage Results" MODIFIED="1652789868928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS213" />
-    <SUITE FILE_PATH="coverage/co2$stereo_wx.coverage" NAME="stereo_wx Coverage Results" MODIFIED="1652365786597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
-    <SUITE FILE_PATH="coverage/co2$Voltages.coverage" NAME="Voltages Coverage Results" MODIFIED="1652781355140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS215" />
     <SUITE FILE_PATH="coverage/co2$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1648104965177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/co2$test3d.coverage" NAME="test3d Coverage Results" MODIFIED="1647408046248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+    <SUITE FILE_PATH="coverage/co2$stereo_wx.coverage" NAME="stereo_wx Coverage Results" MODIFIED="1652365786597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$qr.coverage" NAME="qr Coverage Results" MODIFIED="1652789868928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS213" />
+    <SUITE FILE_PATH="coverage/co2$Calibration_no_cams.coverage" NAME="Calibration no cams Coverage Results" MODIFIED="1648801409864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360/GuyGuiCam" />
     <SUITE FILE_PATH="coverage/co2$drone_state.coverage" NAME="drone-state Coverage Results" MODIFIED="1638110781677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/drone-state" />
-    <SUITE FILE_PATH="coverage/co2$fuzzer.coverage" NAME="fuzzer Coverage Results" MODIFIED="1645625958071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+    <SUITE FILE_PATH="coverage/co2$Voltages.coverage" NAME="Voltages Coverage Results" MODIFIED="1652781355140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS215" />
     <SUITE FILE_PATH="coverage/co2$contours.coverage" NAME="contours Coverage Results" MODIFIED="1652809919868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS213" />
+    <SUITE FILE_PATH="coverage/co2$co2try.coverage" NAME="co2try Coverage Results" MODIFIED="1722523516302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com.kirayim.co2" />
+    <SUITE FILE_PATH="coverage/co2$tempDaily.coverage" NAME="tempDaily Coverage Results" MODIFIED="1722588033314" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/com.kirayim.co2" />
+    <SUITE FILE_PATH="coverage/co2$analyze.coverage" NAME="analyze Coverage Results" MODIFIED="1638117037320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/network-analysis" />
+    <SUITE FILE_PATH="coverage/co2$stiches.coverage" NAME="stiches Coverage Results" MODIFIED="1648703993277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360" />
+    <SUITE FILE_PATH="coverage/co2$lte.coverage" NAME="lte Coverage Results" MODIFIED="1638953753271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS216/gcs-fail" />
+    <SUITE FILE_PATH="coverage/co2$Calibration.coverage" NAME="Calibration Coverage Results" MODIFIED="1653570218083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$fuzzer.coverage" NAME="fuzzer Coverage Results" MODIFIED="1645625958071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
+    <SUITE FILE_PATH="coverage/co2$Stereo_Film.coverage" NAME="Stereo Film Coverage Results" MODIFIED="1649086522071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../threesixty" />
+    <SUITE FILE_PATH="coverage/co2$test3d.coverage" NAME="test3d Coverage Results" MODIFIED="1647408046248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../automation/fuzzer/com/airobotics/automation/fuzzer" />
     <SUITE FILE_PATH="coverage/co2$hq_mc.coverage" NAME="hq_mc Coverage Results" MODIFIED="1644149153348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS210" />
     <SUITE FILE_PATH="coverage/co2$corners.coverage" NAME="corners Coverage Results" MODIFIED="1648135162163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Videos/Projects/360" />
-    <SUITE FILE_PATH="coverage/co2$lte.coverage" NAME="lte Coverage Results" MODIFIED="1638953753271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/outputs/DS216/gcs-fail" />
   </component>
 </project>
